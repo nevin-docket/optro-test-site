@@ -117,13 +117,36 @@
 
 <div class="debug" id="debug">asset_page: resilient-enterprise | waiting for AISeller...</div>
 
-<!--
-  ============================================================
-  GETREV / AISELLER EMBED SCRIPT GOES HERE
-  Paste the <script> tag GetRev provides (creates window.AISeller)
-  ============================================================
--->
-<!-- <script src="https://YOUR-AISELLER-EMBED-URL/widget.js" async></script> -->
+<!-- GetRev / AISeller embed (Optro agent) -->
+<script>
+  window.AISellerSettings = {
+    agent_id: 'eccb67ea-b02c-4535-ba3b-fb975dcb3894',
+  };
+  (function () {
+    var w = window;
+    var ew = w.AISeller;
+    if (typeof ew === 'function') {
+      ew('update', w.AISellerSettings);
+    } else {
+      var d = document;
+      var i = function () { i.q.push(arguments); };
+      i.q = [];
+      i.q.push(['update', w.AISellerSettings]);
+      w.AISeller = i;
+      var l = function () {
+        var s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://d33t2173eag6fx.cloudfront.net/script/app/inbound-se-script/ai-seller.js';
+        var x = d.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      };
+      if (document.readyState === 'complete') { l(); }
+      else if (w.attachEvent) { w.attachEvent('onload', l); }
+      else { w.addEventListener('load', l, false); }
+    }
+  })();
+</script>
 
 <script>
 (async function() {

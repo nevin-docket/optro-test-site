@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Building Resilience for AI-Enabled Fraud | Optro</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1a1a1a;
+    background: #fafafa;
+    line-height: 1.6;
+  }
+  header {
+    background: #0d2a4f;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  header .brand { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.5px; }
+  header nav a { color: #fff; text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; opacity: 0.85; }
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    color: #0d2a4f;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: #0d2a4f;
+  }
+  .lede {
+    font-size: 1.15rem;
+    color: #444;
+    margin-bottom: 2rem;
+  }
+  .cta {
+    background: #0d2a4f;
+    color: #fff;
+    padding: 0.9rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  .content h2 { margin: 2rem 0 1rem; color: #0d2a4f; }
+  .content p { margin-bottom: 1rem; color: #333; }
+  footer {
+    background: #f0f0f0;
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 4rem;
+  }
+  .debug {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.8);
+    color: #0f0;
+    padding: 8px 12px;
+    font-family: monospace;
+    font-size: 11px;
+    border-radius: 4px;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Optro</div>
+  <nav>
+    <a href="#">Solutions</a>
+    <a href="#">Resources</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Research Report</div>
+  <h1>Building Resilience and Preparing for AI-Enabled Fraud in Internal Audits</h1>
+  <p class="lede">How internal audit functions are adapting frameworks, controls, and talent to respond to AI-enabled fraud. Published by the Internal Audit Foundation, sponsored by Optro.</p>
+  <button class="cta">Download the Full Report</button>
+</section>
+
+<section class="content">
+  <h2>What's inside</h2>
+  <p>A preparedness framework, survey data across industries, and practical playbook elements for audit leaders facing AI-driven fraud risk.</p>
+  <h2>Key findings</h2>
+  <p>Most internal audit functions are in early-stage readiness. Deepfake, synthetic identity, and model-driven fraud vectors are the fastest-growing concerns.</p>
+</section>
+
+<footer>
+  &copy; 2026 Optro. All rights reserved. | Test landing page — not for production use.
+</footer>
+
+<div class="debug" id="debug">asset_page: ai-fraud | waiting for AISeller...</div>
+
+<!--
+  ============================================================
+  GETREV / AISELLER EMBED SCRIPT GOES HERE
+  Paste the <script> tag GetRev provides (creates window.AISeller)
+  ============================================================
+-->
+<!-- <script src="https://YOUR-AISELLER-EMBED-URL/widget.js" async></script> -->
+
+<script>
+(async function() {
+  const debug = document.getElementById('debug');
+
+  // Wait for window.AISeller to be available
+  const waitForAISeller = () => new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => reject(new Error('AISeller not loaded within 15s')), 15000);
+    const check = () => {
+      if (window.AISeller && typeof window.AISeller.setContext === 'function') {
+        clearTimeout(timeout);
+        resolve();
+      } else {
+        setTimeout(check, 100);
+      }
+    };
+    check();
+  });
+
+  try {
+    await waitForAISeller();
+
+    // Send visitor data to AISeller
+    await window.AISeller.setContext({
+      asset_page: "ai-fraud"
+    });
+
+    debug.textContent = 'asset_page: ai-fraud | context sent ✓';
+    debug.style.color = '#0f0';
+    console.log('[AISeller] setContext sent:', { asset_page: 'ai-fraud' });
+  } catch (err) {
+    debug.textContent = 'asset_page: ai-fraud | ERROR: ' + err.message;
+    debug.style.color = '#f55';
+    console.error('[AISeller]', err);
+  }
+})();
+</script>
+
+</body>
+</html>
